@@ -38,8 +38,9 @@
 using namespace std;
 int main() {
     int a, b;
-    scanf("%d%d", &a, &b);
-    printf("%d", a + b);
+    while(scanf("%d%d", &a, &b) != EOF) {
+        printf("%d\n", a + b);
+    }
     return 0;
 }
 ```
@@ -50,21 +51,23 @@ int main() {
 #include "testlib.h"
 int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
-    int l = opt<int>(1);
-    int r = opt<int>(2);
-    println(rnd.next(l, r), rnd.next(l, r));
+    int t = opt<int>(1);
+    int l = opt<int>(2);
+    int r = opt<int>(3);
+    while(t --)
+        println(rnd.next(l, r), rnd.next(l, r));
 }
 ```
 
-这一份`gen.cpp`将传入的参数作为 a 和 b 的值域，在这个值域范围内随机生成数据。
+这一份`gen.cpp`将传入的参数作为 a 和 b 的值域，在这个值域范围内随机生成 t 组数据。
 根据需要，`gen.cpp`可以写得很复杂。具体可以参考Codeforces上的博客。
 
 然后，我们在 `scripts.in` 设计每组数据对应的参数。每行对应一组数据。注意最后一行不会被识别到，可以在最后一行换行或者加点注释。
 
 ```
-1 2
-1 100
-500000000 1000000000
+3 1 2
+10 1 100
+100000 500000000 1000000000
 END
 ```
 
@@ -76,6 +79,21 @@ END
 ./doall.sh AplusB
 ```
 等待运行。运行结束，就能在 AplusB/tests/目录下看到所有数据了。
+
+```
+| > AplusB
+    | > tests
+        1.in
+        1.out
+        2.in
+        2.out
+        3.in
+        3.out
+    gen.cpp
+    samples.in
+    scripts.in
+    std.cpp
+```
 
 
 
