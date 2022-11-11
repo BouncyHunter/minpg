@@ -5163,6 +5163,14 @@ void println(const A &a, const B &b, const C &c, const D &d, const E &e, const F
     std::cout << std::endl;
 }
 
+template<typename A, typename B>
+void println(const std::pair<A, B> &p) {
+        __testlib_print_one(p.first);
+        std::cout << " ";
+        __testlib_print_one(p.second);
+        std::cout << std::endl;
+}
+
 /* opts */
 
 /**
